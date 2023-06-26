@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Input Data</h1>
+<br><br>
+
+<div class="form-label">
+    <form target="_blank" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="../../media/images/contoh2.png" width="600">
+                </div>
+                <div class="col-md-6">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <br>
+                    <label for="heightmap">Heightmap</label>
+                    <input type="file" class="form-control" id="heightmap" name="image">
+                    <br>
+                    <label for="texture">Texture</label>
+                    <input type="file" class="form-control" id="texture" name="texture_map">
+                    <br>
+                    <button class="btn btn-primary">Upload</button>
+                </div>
+            </div>
+        </div>
+<!--        <br>-->
+<!--        <div class="form-group">-->
+<!--            -->
+<!--        </div>-->
+<!--        <input type="file" name="texture_map">-->
+
+<!--        <button class="btn btn-primary">Process</button>-->
+    </form>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}
+    Details
+{% endblock %}
+
+{% block content %}
+
+<h1>{{ post.title }}</h1>
+<!--<h1>{{ post.image.url }}</h1>-->
+
+<br/><br/>
+
+<!--<img src="{{ post.image.url }}" class="img-thumbnail">-->
+<br/><br/>
+
+<div class="img-thumbnail">
+    {{ post.html | safe }}
+</div>
+
+
+<a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+<br/><br/>
+<br/><br/>
+
+<!--<p>{{ all }}</p>-->
+
+{% endblock %}

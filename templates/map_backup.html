@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!--<h1>Search Location</h1>-->
+<br><br>
+
+<!--<div class="form-label">-->
+<!--    <form target="_blank" method="POST" enctype="multipart/form-data">-->
+<!--        {% csrf_token %}-->
+<!--&lt;!&ndash;        {{ form.as_p }}&ndash;&gt;-->
+<!--        <div class="form-group">-->
+<!--            <label for="heightmap">Latitude</label>-->
+<!--            <input type="text" class="form-control" id="latitude" name="lat">-->
+<!--&lt;!&ndash;            <input type="file" class="form-control" id="heightmap" name="image">&ndash;&gt;-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="texture">Longitude</label>-->
+<!--            <input type="text" class="form-control" id="latitude" name="lat">-->
+<!--&lt;!&ndash;            <input type="file" class="form-control" id="texture" name="texture_map">&ndash;&gt;-->
+<!--        </div>-->
+<!--&lt;!&ndash;        <input type="file" name="texture_map">&ndash;&gt;-->
+<!--        <br>-->
+<!--        <button class="btn btn-primary">Search</button>-->
+<!--&lt;!&ndash;        <button class="btn btn-primary">Process</button>&ndash;&gt;-->
+<!--    </form>-->
+<!--</div>-->
+
+<!--<div class="form-label">-->
+<!--    <div id='map' width="100%" style='height:400px'></div>-->
+<!--    <script>-->
+<!--mapboxgl.accessToken = 'pk.eyJ1IjoibWFybG82NjYiLCJhIjoiY2trdmR0dDliMXY4eTJ4bnluM2JocXMwYSJ9.cxd7dZ7AyqIT2i8DNAyMJg';-->
+<!--var map = new mapboxgl.Map({-->
+<!--container: 'map',-->
+<!--style: 'mapbox://styles/mapbox/satellite-streets-v10',-->
+<!--     center: [-7.5440701, 110.4257562],-->
+<!--     zoom: 9,-->
+<!--     bearing: 180-->
+<!--});-->
+<!--</script>-->
+<!--</div>-->
+
+
+<div class="search">
+    <div class="row">
+        <div class="col-lg-6">
+<!--            <div class="form-label">-->
+<!--                <div id='map' width="100%" style='height:600px'></div>-->
+<!--                <script>-->
+<!--mapboxgl.accessToken = 'pk.eyJ1IjoibWFybG82NjYiLCJhIjoiY2trdmR0dDliMXY4eTJ4bnluM2JocXMwYSJ9.cxd7dZ7AyqIT2i8DNAyMJg';-->
+<!--var map = new mapboxgl.Map({-->
+<!--container: 'map',-->
+<!--     style: 'mapbox://styles/mapbox/satellite-v9',-->
+<!--     center: [-77.03, 38.91],-->
+<!--     zoom: 9,-->
+<!--     bearing: 180-->
+<!--});-->
+<!--</script>-->
+<!--            </div>-->
+            <head>
+
+                <style>
+	body { margin: 0; padding: 0; }
+	#map { position: fixed; top: 80px; bottom: 50px; width: 50%; }
+</style>
+            </head>
+            <body>
+            <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+            <link
+                    rel="stylesheet"
+                    href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css"
+                    type="text/css"
+            />
+            <!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
+            <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+            <style>
+#geocoder-container > div {
+min-width: 50%;
+margin-left: 25%;
+}
+</style>
+            <div id="map"></div>
+
+            <script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoibWFybG82NjYiLCJhIjoiY2trdmR0dDliMXY4eTJ4bnluM2JocXMwYSJ9.cxd7dZ7AyqIT2i8DNAyMJg';
+var map = new mapboxgl.Map({
+container: 'map',
+
+style: 'mapbox://styles/mapbox/satellite-v9',
+center: [4.899, 52.372],
+zoom: 8
+
+});
+
+var geocoder = new MapboxGeocoder({
+accessToken: mapboxgl.accessToken,
+marker: {
+color: 'orange'
+},
+mapboxgl: mapboxgl
+});
+
+map.addControl(geocoder);
+            </script>
+
+            <img src="https://api.mapbox.com/styles/v1/mapbox/light-v10/static/-87.0186,32.4055,14/500x300?access_token=pk.eyJ1IjoibWFybG82NjYiLCJhIjoiY2trdmR0dDliMXY4eTJ4bnluM2JocXMwYSJ9.cxd7dZ7AyqIT2i8DNAyMJg">
+
+            </body>
+        </div>
+<!--        <div class="col-lg-6">-->
+<!--&lt;!&ndash;            <h1>azzz</h1>&ndash;&gt;-->
+<!--        </div>-->
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}
+
+
+
+<!--{% load static %}-->
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <title>Rekonstruksi 3D</title>-->
+<!--  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">-->
+<!--  <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">-->
+<!--  <script-->
+<!--      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&callback=initMap&libraries=&v=weekly"-->
+<!--      defer-->
+<!--    ></script>-->
+<!--    <script src="{% static 'js/map.js' %}"></script>-->
+<!--</head>-->
+
+<!--<body>-->
+<!--<section class="navbar-top">-->
+<!--  <nav class="navbar navbar-expand-lg navbar-dark bg-primary" id="nav1">-->
+<!--    <a class="navbar-brand" id="logo" href="#">Rekonstruksi 3D</a>-->
+<!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--      <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+
+<!--    <div class="collapse navbar-collapse" id="navbar-color01">-->
+<!--      <ul class="navbar-nav mr-auto">-->
+<!--        <li class="nav-item active">-->
+<!--          <a class="nav-link" href="#">Find Place-->
+<!--            <span class="sr-only">(current)</span>-->
+<!--          </a>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link" href="index2.html">Input Long & Lat</a>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </div>-->
+<!--  </nav>-->
+<!--</section>-->
+
+<!--<section id="input-form">-->
+<!--  <div class="row">-->
+<!--    <div class="col-sm-4">-->
+<!--      <div class="form">-->
+<!--        <div class="form-group">-->
+<!--          <label class="col-form-label" for="inputDefault">Input Langitude</label>-->
+<!--          <input type="text" class="form-control" placeholder="Default input" id="inputDefault">-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--          <label class="col-form-label" for="inputDefault">Input Longitude</label>-->
+<!--          <input type="text" class="form-control" placeholder="Default input" id="inputDefault">-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <button type="button" class="btn btn-primary">Get</button>-->
+<!--      <button type="button" class="btn btn-primary">Process</button>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+
+
+
+<!--</body>-->
+
+<!--</html>-->
+
+
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Search Location</h1>
+<br><br>
+
+<div class="search">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="form-label">
+                <form target="_blank" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <!--        {{ form.as_p }}-->
+                    <div class="form-group">
+                        <label for="heightmap">Longitude</label>
+                        <input type="text" class="form-control" id="longitude" name="lon">
+                        <!--            <input type="file" class="form-control" id="heightmap" name="image">-->
+                    </div>
+                    <div class="form-group">
+                        <label for="texture">Latitude</label>
+                        <input type="text" class="form-control" id="latitude" name="lat">
+                        <!--            <input type="file" class="form-control" id="texture" name="texture_map">-->
+                    </div>
+                    <!--        <input type="file" name="texture_map">-->
+                    <br>
+                    <button class="btn btn-primary">Search</button>
+                    <!--        <button class="btn btn-primary">Process</button>-->
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-9">
+<!--            <img src="https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/110.4287146,-7.5462093,12/600x600?access_token=pk.eyJ1IjoibWFybG82NjYiLCJhIjoiY2trdmR0dDliMXY4eTJ4bnluM2JocXMwYSJ9.cxd7dZ7AyqIT2i8DNAyMJg">-->
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

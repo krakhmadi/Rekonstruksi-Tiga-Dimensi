@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="search">
+    <div class="row">
+        <div class="col-lg-8">
+            <h1>  </h1>
+            <div class="peta">
+                <style>#map { position: absolute; top: 80px; bottom: 100px; width: 50%; }</style>
+                <script src="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js"></script>
+                <link href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css" rel="stylesheet" />
+
+                <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+                <link
+                        rel="stylesheet"
+                        href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css"
+                        type="text/css"
+                />
+                <!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
+                <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+
+                <style>
+                    .coordinates {
+                    background: rgba(0, 0, 0, 0.5);
+                    color: #fff;
+                    position: absolute;
+                    bottom: 40px;
+                    left: 120px;
+                    padding: 5px 10px;
+                    margin: 0;
+                    font-size: 11px;
+                    line-height: 18px;
+                    border-radius: 3px;
+                    display: none;
+                    }
+                </style>
+
+                <div id="map"></div>
+                <pre id="coordinates" class="coordinates"></pre>
+
+                <script>
+                    mapboxgl.accessToken = 'pk.eyJ1IjoibWFybG82NjYiLCJhIjoiY2trdmR0dDliMXY4eTJ4bnluM2JocXMwYSJ9.cxd7dZ7AyqIT2i8DNAyMJg';
+                    var map = new mapboxgl.Map({
+                        container: 'map',
+                        style: 'mapbox://styles/mapbox/satellite-v9',
+                        center: [4.899, 52.372],
+                        zoom: 1
+                    });
+
+                    const geocoder = new MapboxGeocoder({
+                        mapboxgl: mapboxgl,
+                        accessToken: mapboxgl.accessToken,
+                        marker: false
+                    })
+
+                    const marker = new mapboxgl.Marker({
+                        draggable: true
+                    })
+
+                    geocoder.on('result', e => {
+                      marker
+                      .setLngLat(e.result.center)
+                      .addTo(map)
+
+<!--                      coordinates.style.display = 'block';-->
+<!--                      coordinates.innerHTML = 'Longitude: ' + e.result.center[0] + '<br />Latitude: ' + e.result.center[1];-->
+<!--                      document.getElementById("longitude").value = e.result.center[0];-->
+<!--                      document.getElementById("latitude").value = e.result.center[1];-->
+                    })
+
+                    function onDragEnd() {
+                        var lngLat = marker.getLngLat();
+                        console.log(lngLat)
+                        coordinates.style.display = 'block';
+                        coordinates.innerHTML =
+                        'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
+                        document.getElementById("longitude").value = lngLat.lng;
+                        document.getElementById("latitude").value = lngLat.lat;
+                    }
+
+                    marker.on('dragend', onDragEnd)
+                    map.addControl(geocoder)
+
+<!--                    var geocoder = new MapboxGeocoder({-->
+<!--                    accessToken: mapboxgl.accessToken,-->
+<!--                    draggable : true,-->
+
+<!--                    mapboxgl: mapboxgl-->
+<!--                    });-->
+
+<!--                    var marker = new mapboxgl.Marker({-->
+<!--                    draggable: true-->
+<!--                    })-->
+<!--                    .setLngLat([118.18884423467955, -4.142423151847595])-->
+<!--                    .addTo(map);-->
+
+<!--                    function onDragEnd() {-->
+<!--                    var lngLat = marker.getLngLat();-->
+<!--                    coordinates.style.display = 'block';-->
+<!--                    coordinates.innerHTML =-->
+<!--                    'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;-->
+<!--                    document.getElementById("longitude").value = lngLat.lng;-->
+<!--                    document.getElementById("latitude").value = lngLat.lat;-->
+<!--                    }-->
+
+<!--                    marker.on('dragend', onDragEnd);-->
+
+<!--                    map.addControl(geocoder);-->
+
+                </script>
+
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="mapbox">
+                <div class="form-label">
+                <form id="form" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>Longitude</label>
+                        <input type="text" class="form-control" id="longitude" name="lon">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label>Latitude</label>
+                        <input type="text" class="form-control" id="latitude" name="lat">
+                    </div>
+                    <br>
+                    <input value="false" type="text" name="param-heightMap" id="paramHeightMap" style="display: none;" >
+                    <button type="submit" class="btn btn-primary" id="link1">Download Image</button>
+
+                </form>
+            </div>
+            </div>
+
+            </div>
+    </div>
+
+
+</div>
+

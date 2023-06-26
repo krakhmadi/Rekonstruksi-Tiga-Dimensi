@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!--<h1>Rekonstruksi 3D</h1>-->
+<br>
+<h4>3D Model History:</h4><br>
+<ul>
+{% for post in object_list %}
+    <li><h5>{{ post.title }}</h5>
+        <img src="../../media/icon/preview.png">
+        <a href="{% url 'detail' post.pk %}" target="_blank" style="margin-right: 10px;">Preview</a>
+        <img src="../../media/icon/delete.png">
+        <a href="{% url 'delete' post.pk %}">Delete</a>
+        {{ post.body }}</li>
+    <br>
+<!--    <div class="box">-->
+<!--<iframe width="47%" height="700" src="{{detail}}"  frameborder="1" allow="autoplay; encrypted-media" allowfullscreen align="left" ></iframe>-->
+<!--</div>-->
+{% endfor %}
+</ul>
+<!--<embed src="https://tangrams.github.io/heightmapper/#10.459/-8.1088/114.1493" style="width:500px; height: 300px;">-->
+
+{% endblock %}
